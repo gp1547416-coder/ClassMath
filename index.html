@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassMath | Learning Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen font-sans">
+
+    <div class="text-center p-8 bg-white shadow-xl rounded-2xl border border-slate-200 max-w-sm w-full">
+        <h1 class="text-4xl font-extrabold text-indigo-600 mb-6">ClassMath</h1>
+        
+        <div id="start-section">
+            <p class="text-slate-500 mb-6">Ready to begin your session?</p>
+            <button onclick="showLogin()" class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all transform active:scale-95">
+                Start Learning
+            </button>
+        </div>
+
+        <div id="code-section" class="hidden">
+            <p class="text-slate-500 mb-4 text-sm">Enter your 3-digit class code</p>
+            <form onsubmit="handleRedirect(event)">
+                <input 
+                    type="text" 
+                    id="classCode" 
+                    placeholder="e.g. abc" 
+                    class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none mb-4 text-center text-lg tracking-widest"
+                    autocomplete="off"
+                >
+                <button type="submit" class="w-full py-3 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-all">
+                    Join Class
+                </button>
+            </form>
+            <button onclick="hideLogin()" class="mt-4 text-xs text-slate-400 hover:text-slate-600 underline">Go back</button>
+        </div>
+    </div>
+
+    <script>
+        const startSection = document.getElementById('start-section');
+        const codeSection = document.getElementById('code-section');
+        const codeInput = document.getElementById('classCode');
+
+        function showLogin() {
+            startSection.classList.add('hidden');
+            codeSection.classList.remove('hidden');
+            codeInput.focus();
+        }
+
+        function hideLogin() {
+            startSection.classList.remove('hidden');
+            codeSection.classList.add('hidden');
+        }
+
+        function handleRedirect(event) {
+            event.preventDefault();
+            const val = codeInput.value.trim();
+
+            if (val === "lol") {
+                window.location.href = "https://OneMath.vercel.app";
+            } else {
+                alert("Access Denied: Invalid Class Code.");
+                codeInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
